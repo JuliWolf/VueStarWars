@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import axios from 'axios';
 
 const state = {
@@ -13,8 +12,7 @@ const state = {
 
 const mutations = {
     UPDATE_ARRAY(state, payload){
-        if(!Vue.localStorage.get(payload)){
-            console.log('Hello');
+        if(!localStorage.getItem(payload)){
             axios.get(payload, {
                 header: 'Access-Control-Allow-Origin: *'
             })
@@ -22,18 +20,14 @@ const mutations = {
                     state.dataArray = res.data.results;
                     state.next = res.data.next;
                     state.prev = res.data.previous;
-                    console.log(payload);
-                    console.log(res.data);
-                    // Vue.localStorage.set(payload, res.data);
-                    Vue.localStorage.set('someNumber', 123)
+                    localStorage.setItem(payload, JSON.stringify(res.data));
                 })
                 .catch(error => console.log(error))
         }else{
-            console.log(Vue.localStorage);
-            console.log(Vue.localStorage.get('someNumber'));
-            // state.dataArray = Vue.localStorage.get(payload.results);
-            // state.next = Vue.localStorage.get(payload.next);
-            // state.prev = Vue.localStorage.get(payload.prev);
+            let data = JSON.parse(localStorage.getItem(payload));
+            state.dataArray = data.results;
+            state.next = data.next;
+            state.prev = data.prev;
         }
     },
     CHECK_FLAG(state){
@@ -49,12 +43,18 @@ const mutations = {
         }
     },
     SHOW_EXACT_ITEM(state, payload){
-        axios.get(payload)
-            .then(res =>{
-                state.currentItem = res.data;
-                state.exactItemFlag = true;
-            })
-            .catch(error => console.log(error))
+        if(!localStorage.getItem(payload)) {
+            axios.get(payload)
+                .then(res => {
+                    state.currentItem = res.data;
+                    state.exactItemFlag = true;
+                    localStorage.setItem(payload, JSON.stringify(res.data));
+                })
+                .catch(error => console.log(error))
+        }else{
+            state.currentItem = JSON.parse(localStorage.getItem(payload));
+            state.exactItemFlag = true;
+        }
     },
     RETURN_TO_PAGES(state){
         state.exactItemFlag = false;
