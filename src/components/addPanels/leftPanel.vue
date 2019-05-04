@@ -22,18 +22,33 @@
                 </li>
             </ul>
         </nav>
+        <transition name="slide" mode="out-in">
+            <a href="#" class="fa fa-search" v-if="!searchFlag" @click="changeSearchFlag" key="open"></a>
+            <app-search v-else key="search"></app-search>
+        </transition>
     </div>
-
 </template>
 
 <script>
     import {mapActions} from 'vuex';
+    import {mapGetters} from 'vuex';
+    import search from './search/search'
 
     export default{
         methods:{
             ...mapActions([
-                'checkflagAndDate'
+                'checkflagAndDate',
+                'changeSearchFlag'
             ])
+        },
+        computed:{
+            ...mapGetters([
+                'searchList',
+                'searchFlag'
+            ])
+        },
+        components: {
+            appSearch: search
         }
     }
 </script>
@@ -72,6 +87,24 @@
                 }
             }
         }
+        .fa-search{
+            color:$yellow;
+            font-size:28px;
+            position:relative;
+            left:10%;
+            margin:10% 0;
+        }
+    }
+
+    .slide-enter-active {
+        transition: all 1s ease;
+    }
+    .slide-leave-active {
+        transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    .slide-enter, .slide-leave-to {
+        transform: translateX(-10px);
+        opacity: 0;
     }
 
 </style>

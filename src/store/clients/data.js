@@ -7,27 +7,42 @@ const state = {
     pageNextFlag: false,
     pagePrevFlag: false,
     exactItemFlag:false,
-    currentItem: {}
+    currentItem: {},
+    searchList: [
+        'Planets',
+        'People',
+        'Species',
+        'Films',
+        'Starships',
+        'Vehicles'
+    ]
 };
 
 const mutations = {
     UPDATE_ARRAY(state, payload){
-        if(!localStorage.getItem(payload)){
-            axios.get(payload, {
-                header: 'Access-Control-Allow-Origin: *'
-            })
+        if(payload.itemType){
+            let itemType = payload.itemType.toLowerCase();
+            let itemName = payload.itemName.toLowerCase();
+            var link = 'https://swapi.co/api/'+itemType+'/?search='+itemName;
+        }else{
+            var link = payload;
+        }
+        if(!localStorage.getItem(link)){
+            axios.get(link)
                 .then(res =>{
                     state.dataArray = res.data.results;
                     state.next = res.data.next;
                     state.prev = res.data.previous;
+                    state.exactItemFlag = false;
                     localStorage.setItem(payload, JSON.stringify(res.data));
                 })
                 .catch(error => console.log(error))
         }else{
-            let data = JSON.parse(localStorage.getItem(payload));
+            let data = JSON.parse(localStorage.getItem(link));
             state.dataArray = data.results;
             state.next = data.next;
-            state.prev = data.prev;
+            state.prev = data.previous;
+            state.exactItemFlag = false;
         }
     },
     CHECK_FLAG(state){
@@ -86,7 +101,6 @@ const actions = {
 
 const getters = {
     dataArray: state => {
-        // console.log(state.dataArray);
         return state.dataArray;
     },
     nextPage: state => {
@@ -106,6 +120,9 @@ const getters = {
     },
     currentItem: state => {
         return state.currentItem;
+    },
+    searchList: state =>{
+        return state.searchList;
     }
 };
 
