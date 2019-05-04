@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import axios from 'axios';
 
 const state = {
@@ -12,15 +13,28 @@ const state = {
 
 const mutations = {
     UPDATE_ARRAY(state, payload){
-        axios.get(payload, {
-            header: 'Access-Control-Allow-Origin: *'
-        })
-            .then(res =>{
-                state.dataArray = res.data.results;
-                state.next = res.data.next;
-                state.prev = res.data.previous;
+        if(!Vue.localStorage.get(payload)){
+            console.log('Hello');
+            axios.get(payload, {
+                header: 'Access-Control-Allow-Origin: *'
             })
-            .catch(error => console.log(error))
+                .then(res =>{
+                    state.dataArray = res.data.results;
+                    state.next = res.data.next;
+                    state.prev = res.data.previous;
+                    console.log(payload);
+                    console.log(res.data);
+                    // Vue.localStorage.set(payload, res.data);
+                    Vue.localStorage.set('someNumber', 123)
+                })
+                .catch(error => console.log(error))
+        }else{
+            console.log(Vue.localStorage);
+            console.log(Vue.localStorage.get('someNumber'));
+            // state.dataArray = Vue.localStorage.get(payload.results);
+            // state.next = Vue.localStorage.get(payload.next);
+            // state.prev = Vue.localStorage.get(payload.prev);
+        }
     },
     CHECK_FLAG(state){
         if(state.next != null){

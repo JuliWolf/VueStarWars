@@ -16,6 +16,15 @@
         <p v-if="item.release_date">Release date: {{item.release_date}}</p>
         <p v-if="item.opening_crawl">Opening Crawl: {{item.opening_crawl}}</p>
 
+        <!--People-->
+        <p v-if="item.gender">Gender: {{item.gender}}</p>
+        <p v-if="item.birth_year">Birth year: {{item.birth_year}}</p>
+        <p v-if="item.eye_color">Eye Color: {{item.eye_color}}</p>
+        <p v-if="item.hair_color">Hair Color: {{item.hair_color}}</p>
+        <p v-if="item.height">Height: {{item.height}} sm</p>
+        <p v-if="item.mass">Mass: {{item.mass}} kg</p>
+
+
         <!--Species-->
         <p v-if="item.language">Language: {{item.language}}</p>
         <p v-if="item.designation">Designation: {{item.designation}}</p>

@@ -9,7 +9,7 @@
                     <a href="#" @click="checkflagAndDate('films/')">Films</a>
                 </li>
                 <li>
-                    <a href="#" @click="checkflagAndDate('people')">People</a>
+                    <a href="#" @click="checkflagAndDate('people/')">People</a>
                 </li>
                 <li>
                     <a href="#" @click="checkflagAndDate('species')">Species</a>
