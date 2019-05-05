@@ -48,47 +48,15 @@
                 <p v-if="item.cost_in_credits">Cost: {{item.cost_in_credits}} credits</p>
             </div>
         </div>
-        <div class="commentsContainer">
-            <div class="inputContainer">
-                <form @submit.prevent="addComment({'url':item.url, 'text':comment})">
-                    <textarea name="comment" id="comment" cols="90" rows="8" placeholder="Your Comment..." v-model="comment"></textarea>
-                    <button class="btn btn-default" type="submit">Отправить</button>
-                </form>
-                <app-comments :comment="comment" v-for="comment in commentList"></app-comments>
-            </div>
-        </div>
     </div>
 
 
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
-    import {mapActions} from 'vuex'
-
-    import comments from '../comments/comments';
-
     export default{
-        data(){
-            return{
-                comment:'',
-                commentList: []
-            }
-        },
         props: ['item'],
-        methods:{
-          ...mapActions([
-              'addComment',
-          ])
-        },
-        computed: {
-            ...mapGetters([
-                'commentsList'
-            ])
-        },
-        components:{
-            appComments:comments
-        }
+
     }
 </script>
 
