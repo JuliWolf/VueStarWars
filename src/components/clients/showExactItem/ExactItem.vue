@@ -2,7 +2,7 @@
     <v-hover>
         <v-card class="itemInfo mx-auto"
                 slot-scope="{hover}"
-                :class="`elevation-${hover ? 12 : 2}`">
+                :class="`elevation-${hover ? 20 : 2}`">
             <v-card-title>
                 <!--Planets-->
                 <h3 v-if="item.name">{{item.name}}</h3>
@@ -32,7 +32,6 @@
                 <p v-if="item.height">Height: {{item.height}} sm</p>
                 <p v-if="item.mass">Mass: {{item.mass}} kg</p>
 
-
                 <!--Species-->
                 <p v-if="item.language">Language: {{item.language}}</p>
                 <p v-if="item.designation">Designation: {{item.designation}}</p>
@@ -52,15 +51,108 @@
                 <p v-if="item.length">Length: {{item.length}} m</p>
 
                 <p v-if="item.cost_in_credits">Cost: {{item.cost_in_credits}} credits</p>
+
+
+                <v-expansion-panel v-if="item.planets" dark focusable>
+                    <v-expansion-panel-content>
+                        <template v-slot:header>
+                            <div>Planets</div>
+                        </template>
+                        <v-list>
+                            <v-list-tile v-for="(info,i) in item.planets" :key="i" @click="showExactItem(info)">
+                                <v-list-tile-content>
+                                    <v-list-tile v-text="'Planet ' + (i+1)"></v-list-tile>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                        </v-list>
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
+                <v-expansion-panel v-if="item.species" dark focusable>
+                    <v-expansion-panel-content>
+                        <template v-slot:header>
+                            <div>Species</div>
+                        </template>
+                        <v-list>
+                            <v-list-tile v-for="(info,i) in item.species" :key="i" @click="showExactItem(info)">
+                                <v-list-tile-content>
+                                    <v-list-tile v-text="'Species ' + (i+1)"></v-list-tile>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                        </v-list>
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
+                <v-expansion-panel v-if="item.starships" dark focusable>
+                    <v-expansion-panel-content>
+                        <template v-slot:header>
+                            <div>Starships</div>
+                        </template>
+                        <v-list>
+                            <v-list-tile v-for="(info,i) in item.starships" :key="i" @click="showExactItem(info)">
+                                <v-list-tile-content>
+                                    <v-list-tile v-text="'Starship ' + (i+1)"></v-list-tile>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                        </v-list>
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
+                <v-expansion-panel v-if="item.vehicles" dark focusable>
+                    <v-expansion-panel-content>
+                        <template v-slot:header>
+                            <div>Vehicles</div>
+                        </template>
+                        <v-list>
+                            <v-list-tile v-for="(info,i) in item.vehicles" :key="i" @click="showExactItem(info)">
+                                <v-list-tile-content>
+                                    <v-list-tile v-text="'vehicle ' + (i+1)"></v-list-tile>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                        </v-list>
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
+                <v-expansion-panel v-if="item.people" dark focusable>
+                    <v-expansion-panel-content>
+                        <template v-slot:header>
+                            <div>People</div>
+                        </template>
+                        <v-list>
+                            <v-list-tile v-for="(info,i) in item.people" :key="i" @click="showExactItem(info)">
+                                <v-list-tile-content>
+                                    <v-list-tile v-text="'Person ' + (i+1)"></v-list-tile>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                        </v-list>
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
+                <v-expansion-panel v-if="item.films" dark focusable>
+                    <v-expansion-panel-content>
+                        <template v-slot:header>
+                            <div>Films</div>
+                        </template>
+                        <v-list>
+                            <v-list-tile v-for="(info,i) in item.films" :key="i" @click="showExactItem(info)">
+                                <v-list-tile-content>
+                                    <v-list-tile v-text="'Film ' + (i+1)"></v-list-tile>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                        </v-list>
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
+
             </v-card-text>
         </v-card>
     </v-hover>
 </template>
 
 <script>
+    import {mapActions} from 'vuex';
+
     export default{
         props: ['item'],
-
+        methods: {
+            ...mapActions([
+                'showExactItem'
+            ])
+        }
     }
 </script>
 
@@ -76,6 +168,12 @@
         background-color:$gray;
         color:white;
         font-size:16px;
+        a{
+            text-decoration:none !important;
+            :hover, :active{
+                color:$yellow;
+            }
+        }
     }
 
 </style>

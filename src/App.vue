@@ -4,17 +4,21 @@
     <v-container grid-list-md text-xs-center fluid="true">
       <router-view></router-view>
     </v-container>
-
+    <div class="footer">
+      <app-footer></app-footer>
+    </div>
   </div>
 </template>
 
 <script>
   import Header from './components/addPanels/header.vue'
+  import Footer from './components/addPanels/footer.vue'
 
   export default {
     name: 'app',
     components: {
-      'app-header': Header
+      'app-header': Header,
+      'app-footer': Footer
     }
   }
 </script>
@@ -26,8 +30,16 @@
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     background-color: rgb(39, 43, 48);
     color: $yellow;
-    .container-fluid{
-      padding:0;
+    position:relative;
+    padding:0;
+    height: 100%;
+    #app{
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    #footer{
+      flex: 0 0 auto;
     }
   }
 </style>
