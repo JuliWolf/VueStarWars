@@ -1,18 +1,14 @@
 <template>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2">
-                <app-left-panel class="sidePanel"></app-left-panel>
-            </div>
-            <transition name="fade">
-                <app-show-info-panel class="col-md-offset-2 col-md-10"></app-show-info-panel>
-            </transition>
-            <transition name="fade">
-                <app-exact-item-panel class="col-md-offset-2 col-md-10"></app-exact-item-panel>
-            </transition>
-        </div>
+    <v-layout row wrap align-content-center>
+        <app-left-panel class="sidePanel"></app-left-panel>
+        <transition name="fade">
+            <app-show-info-panel></app-show-info-panel>
+        </transition>
+        <transition name="fade">
+            <app-exact-item-panel></app-exact-item-panel>
+        </transition>
+    </v-layout>
 
-    </div>
 </template>
 
 <script>
@@ -32,9 +28,6 @@
 
 <style scoped lang="scss">
     $yellow: #ffe300;
-    .sidePanel{
-        position:absolute;
-    }
     .fade-enter-active, .component-fade-leave-active {
         transition: all 1s;
     }

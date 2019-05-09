@@ -1,26 +1,24 @@
 <template>
-    <div class="searchForm">
-        <div class="row">
-            <div class="col-sm-10">
-                <h3>Search</h3>
-            </div>
-            <div class="col-sm-1">
-                <i class="fa fa-times col-sm-1" aria-hidden="true" @click="changeSearchFlag"></i>
-            </div>
-        </div>
-
-        <form>
-            <label for="searchType">Choose type</label>
-            <select class="form-control" id="searchType" v-model="itemType">
-                <option disabled>Types...</option>
-                <option :value="item" v-for="item in searchList">{{item}}</option>
-            </select>
-            <label for="name">Enter name or title</label>
-            <input type="text" class="form-control" id="name" v-model="itemName">
-            <button class="btn btn-default" @click.prevent="checkflagAndDate({itemType, itemName})">Search</button>
-        </form>
-    </div>
-
+    <v-layout row wrap class="searchForm">
+        <v-flex xs10>
+            <h3>Search</h3>
+        </v-flex>
+        <v-flex  offset-xs1 xs1 align-self-start>
+            <i class="fa fa-times col-sm-1" aria-hidden="true" @click="changeSearchFlag"></i>
+        </v-flex>
+        <v-flex xs12>
+            <form>
+                <label for="searchType">Choose type</label>
+                <select class="form-control" id="searchType" v-model="itemType">
+                    <option disabled>Types...</option>
+                    <option :value="item" v-for="item in searchList">{{item}}</option>
+                </select>
+                <label for="name">Enter name or title</label>
+                <input type="text" class="form-control" id="name" v-model="itemName">
+                <button class="btn btn-default" @click.prevent="checkflagAndDate({itemType, itemName})">Search</button>
+            </form>
+        </v-flex>
+    </v-layout>
 </template>
 
 <script>
@@ -69,14 +67,9 @@
                 margin:10px 5px;
                 float: right;
             }
-            .row{
-                display: flex;
-                align-items: center;
-                height: 100%;
-                .fa-times{
-                    color:$yellow;
-                    font-size:20px;
-                }
+            .fa-times{
+                color:$yellow;
+                font-size:20px;
             }
         }
 

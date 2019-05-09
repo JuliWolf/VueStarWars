@@ -1,5 +1,5 @@
 <template>
-    <div class="container col-md-12">
+    <v-flex xs10 md2 xl2>
         <nav>
             <ul class="nav nav-stacked">
                 <li>
@@ -26,7 +26,7 @@
             <a href="#" class="fa fa-search" v-if="!searchFlag" @click="changeSearchFlag" key="open"></a>
             <app-search v-else key="search"></app-search>
         </transition>
-    </div>
+    </v-flex>
 </template>
 
 <script>

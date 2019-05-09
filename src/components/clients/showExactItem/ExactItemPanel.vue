@@ -1,10 +1,16 @@
 <template>
-    <div  v-if="exactItemFlag">
-        <div class="col-md-2 returnButton">
-            <a class="fa fa-arrow-left" @click="returnToPages"></a>
-        </div>
-        <app-exact-item class="col-md-6 col-md-offset-1" :item="currentItem"></app-exact-item>
-    </div>
+    <v-flex xs11 md10 xl10 v-if="exactItemFlag">
+        <v-layout row wrap>
+            <v-flex xs1 md2 xl2>
+                <div class="returnButton">
+                    <a class="fa fa-arrow-left" @click="returnToPages"></a>
+                </div>
+            </v-flex>
+            <v-flex xs11 offset-xs1 xl6 offset-xl1 md6 offset-md1>
+                <app-exact-item :item="currentItem"></app-exact-item>
+            </v-flex>
+        </v-layout>
+    </v-flex>
 </template>
 
 <script>

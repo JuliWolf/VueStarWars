@@ -1,13 +1,9 @@
 <template>
   <div id="app">
     <app-header></app-header>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-          <router-view></router-view>
-        </div>
-      </div>
-    </div>
+    <v-container grid-list-md text-xs-center fluid="true">
+      <router-view></router-view>
+    </v-container>
 
   </div>
 </template>
