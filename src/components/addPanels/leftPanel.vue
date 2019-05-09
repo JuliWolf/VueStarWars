@@ -44,7 +44,8 @@
         computed:{
             ...mapGetters([
                 'searchList',
-                'searchFlag'
+                'searchFlag',
+                'watchedPages'
             ])
         },
         components: {

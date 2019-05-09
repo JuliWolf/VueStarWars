@@ -3,7 +3,7 @@
     <nav>
       <ul class="nav nav-tabs nav-justified">
         <li>
-          <router-link to="/">StarWars</router-link>
+          <router-link to="/StarWars">StarWars</router-link>
         </li>
         <li>
           <router-link to="/Admin">Admin</router-link>

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import mainInfo from './components/clients/mainInfo.vue'
+import StarWars from './components/clients/StarWars.vue'
 
 Vue.use(Router)
 
@@ -9,15 +9,15 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'mainInfo',
-      component: mainInfo
+      path: '/StarWars',
+      name: 'StarWars',
+      component: StarWars
     },
-    // {
-    //   path: '/planets',
-    //   name: 'planets',
-    //   component: () => import('./components/clients/mainInfo.vue')
-    // }
+    {
+      path: '/',
+      name: 'welcome',
+      component: () => import('./components/clients/Welcome.vue')
+    }
 
   ]
 })
