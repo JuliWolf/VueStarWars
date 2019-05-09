@@ -1,12 +1,12 @@
 <template>
-    <v-footer height="auto" id="footer">
-        <v-card class="flex blue-grey darken-3" flat tile>
+    <v-footer height="auto" id="footer" dark>
+        <v-card class="flex darkBlue darken-3" flat tile>
             <v-card-title class="teal justify-end">
                 <v-btn v-for="icon in sociaLicons" :key="icon" dark icon class="mx-3">
                     <v-icon size="24px">{{ icon }}</v-icon>
                 </v-btn>
             </v-card-title>
-            <v-card-actions color="darkBlue"  class="justify-center grey darken-3">
+            <v-card-actions class="darkBlue justify-center">
                 &copy;{{ new Date().getFullYear() }} — <strong>JuliWolf</strong>
             </v-card-actions>
         </v-card>

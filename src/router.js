@@ -9,15 +9,22 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/',
+      name: 'welcome',
+      component: () => import('./components/clients/Welcome.vue')
+    },
+    {
       path: '/StarWars',
       name: 'StarWars',
       component: StarWars
     },
     {
-      path: '/',
-      name: 'welcome',
-      component: () => import('./components/clients/Welcome.vue')
-    }
+      path: '/history',
+      name: 'History',
+      component: () => import('./components/clients/showHistory/historyPanel.vue')
+    },
+
+
 
   ]
 })

@@ -1,12 +1,14 @@
 <template>
   <div id="app">
-    <app-header></app-header>
-    <v-container grid-list-md text-xs-center fluid="true">
-      <router-view></router-view>
-    </v-container>
-    <div class="footer">
-      <app-footer></app-footer>
-    </div>
+    <v-app id="vContainer">
+        <app-header></app-header>
+        <v-container grid-list-md text-xs-center fluid="true">
+          <router-view></router-view>
+        </v-container>
+        <div class="footer">
+          <app-footer></app-footer>
+        </div>
+    </v-app>
   </div>
 </template>
 
@@ -33,6 +35,9 @@
     position:relative;
     padding:0;
     height: 100%;
+    #vContainer{
+      background-color: rgb(39, 43, 48);
+    }
     #app{
       display: flex;
       flex-direction: column;

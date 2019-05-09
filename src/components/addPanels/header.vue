@@ -3,7 +3,7 @@
     <v-toolbar-items class="navigation">
       <v-btn color="darkBlue" to="/" large class="nav_button">About</v-btn>
       <v-btn color="darkBlue" to="/StarWars" large class="nav_button">StarWars</v-btn>
-      <v-btn color="darkBlue" to="/Admin" large class="nav_button">Admin</v-btn>
+      <v-btn color="darkBlue" to="/history" large class="nav_button">History</v-btn>
     </v-toolbar-items>
   </v-toolbar>
 </template>
@@ -18,10 +18,6 @@
       .nav_button{
         color:yellow;
         text-decoration:none;
-        :hover, :active{
-          background-color: white;
-          color:$gray;
-        }
       }
     }
 

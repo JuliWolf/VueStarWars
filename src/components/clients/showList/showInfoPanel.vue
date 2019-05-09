@@ -13,7 +13,6 @@
                 </div>
             </v-flex>
         </v-layout>
-
     </v-flex>
 </template>
 
