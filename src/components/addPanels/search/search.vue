@@ -63,6 +63,7 @@
         .searchForm{
             padding:2px;
             margin:2px 10px;
+            color:$yellow;
             .btn-default{
                 margin:10px 5px;
                 float: right;

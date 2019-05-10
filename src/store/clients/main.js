@@ -59,14 +59,20 @@ const mutations = {
                     state.currentItem = res.data;
                     state.exactItemFlag = true;
                     localStorage.setItem(payload, JSON.stringify(res.data));
-                    state.watchedPages.push(res.data);
+
+                    if(!state.watchedPages.has(res.data.url)){
+                        state.watchedPages.set(res.data.url, res.data);
+                    }
                 })
                 .catch(error => console.log(error))
         }else{
             var data = JSON.parse(localStorage.getItem(payload));
             state.currentItem = data;
             state.exactItemFlag = true;
-            state.watchedPages.push(data);
+
+            if(!state.watchedPages.has(data.url)){
+                state.watchedPages.set(data.url, data);
+            }
         }
     },
     RETURN_TO_PAGES(state){

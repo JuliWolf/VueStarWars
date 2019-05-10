@@ -2,8 +2,8 @@
     <transition name="fade" mode="in-out">
         <v-hover class="itemInfo">
             <v-card dark slot-scope="{hover}"
-                    :class="`elevation-${hover ? 12 : 2}`"
-                    class="mx-auto info_card"
+                    :class="`${hover? 'info_card': ''}`"
+                    class="mx-auto"
                     :data-id="item.url"
                     @click="showExactItem(item.url)">
                 <v-card-title primary-title >
@@ -69,8 +69,10 @@
         background-color:$gray;
         color:white;
     }
-    .info_card:hover{
-        box-shadow: 1px 1px 30px $yellow;
+    .info_card{
+        box-shadow: 1px 1px 15px $yellow;
+        position:relative;
+        top:2px;
     }
 
     .fade-enter-active, .component-fade-leave-active {

@@ -5,7 +5,7 @@ import Vuetify from 'vuetify'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import theme from './plugins/customThemes.js'
+import theme from './themes/customThemes.js'
 
 Vue.use(Vuetify, {theme} );
 axios.defaults.baseURL = 'https://swapi.co/api/';
