@@ -1,15 +1,13 @@
 <template>
     <v-flex xs12>
         <v-layout row wrap>
-            <v-flex v-for="item in watchedPages" offset-xs1 xs11 md4 offset-md1 xl4 offset-xl1>
-                <transition name="fade" mode="in-out">
-                    <app-history-info :item="item[1]" :id="item[0]"></app-history-info>
-                </transition>
+            <v-flex v-for="(item, key) in paginatedData"  offset-xs1 xs11 md4 offset-md1 xl4 offset-xl1>
+                <app-history-info :item="item" :id="key"></app-history-info>
             </v-flex>
         </v-layout>
         <v-layout align-center justify-center>
             <v-flex offset-xs2 xs4 offset-xl2 xl4 offset-md2 md4 align-self-center>
-                <div class="pagination" v-if="watchedPages.length>0">
+                <div class="pagination" v-if="paginatedData.length>0">
                     <button class="btn btn-default" @click="showPreviousPage" :disabled="pageNumber === 0">Prev</button>
                     <button class="btn btn-default" @click="showNextPage" :disabled="pageNumber >= pageCount -1">Next</button>
                 </div>
@@ -64,10 +62,10 @@
             margin:0 10px;
         }
     }
-    .fade-enter-active, .component-fade-leave-active {
+    .fade-enter-active, .fade-leave-active {
         transition: all 1s;
     }
-    .fade-enter, .component-fade-leave-to {
+    .fade-enter, .fade-leave-to /* .list-leave-active до версии 2.1.8 */ {
         opacity: 0;
         transform: translateY(30px);
     }

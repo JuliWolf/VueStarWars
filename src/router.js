@@ -14,6 +14,11 @@ export default new Router({
       component: () => import('./components/clients/Welcome.vue')
     },
     {
+      path: '/descriptions',
+      name: 'Description',
+      component: () => import('./components/clients/welcome/descriptions.vue')
+    },
+    {
       path: '/StarWars',
       name: 'StarWars',
       component: StarWars

@@ -9,7 +9,8 @@ const state = {
     pagePrevFlag: false,
     exactItemFlag:false,
     currentItem: {},
-    watchedPages: history.state.watchedPages
+    watchedPages: history.state.watchedPages,
+    localStorage:{}
 
 };
 
@@ -53,31 +54,46 @@ const mutations = {
         }
     },
     SHOW_EXACT_ITEM(state, payload){
-        if(!localStorage.getItem(payload)) {
+        // if(!localStorage.getItem(payload)) {
+        if(!state.localStorage){
             axios.get(payload)
                 .then(res => {
                     state.currentItem = res.data;
                     state.exactItemFlag = true;
                     localStorage.setItem(payload, JSON.stringify(res.data));
-
-                    if(!state.watchedPages.has(res.data.url)){
-                        state.watchedPages.set(res.data.url, res.data);
-                    }
+                    // state.watchedPages.push(res.data);
                 })
                 .catch(error => console.log(error))
         }else{
-            var data = JSON.parse(localStorage.getItem(payload));
+            var data = state.localStorage;
             state.currentItem = data;
             state.exactItemFlag = true;
-
-            if(!state.watchedPages.has(data.url)){
-                state.watchedPages.set(data.url, data);
-            }
+            // state.watchedPages.push(data);
         }
     },
     RETURN_TO_PAGES(state){
         state.exactItemFlag = false;
     },
+    CHECK_DATA_IN_STORAGE(state, id){
+        if(localStorage.getItem(id)){
+            state.localStorage = JSON.parse(localStorage.getItem(id));
+        }else {
+            state.localStorage = false;
+        }
+    },
+    SAVE_ITEM_TO_HISTORY(state, url){
+        let flag = false;
+        state.watchedPages.forEach(function(obj){
+            if(obj.url == url) {
+                flag = true;
+            }
+        })
+        if(!state.localStorage && !flag){
+                state.watchedPages.push(state.currentItem);
+        }else if(!flag){
+            state.watchedPages.push(state.localStorage);
+        }
+    }
 };
 
 const actions = {
@@ -95,11 +111,23 @@ const actions = {
 
         })
     },
-    showExactItem({commit}, url){
-        commit('SHOW_EXACT_ITEM', url);
+    showExactItem({dispatch, commit}, url){
+        return dispatch('checkDataInStorage', url).then(() => {
+            commit('SHOW_EXACT_ITEM', url);
+        }).then(() => {
+            setTimeout(() => {
+                commit('SAVE_ITEM_TO_HISTORY', url);
+            }, 100);
+        });
+
     },
     returnToPages({commit}){
         commit('RETURN_TO_PAGES');
+    },
+    checkDataInStorage({commit}, id){
+        new Promise((resolve, reject) => {
+            commit('CHECK_DATA_IN_STORAGE', id);
+        })
     }
 };
 

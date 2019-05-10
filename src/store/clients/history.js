@@ -1,5 +1,5 @@
 const state = {
-    watchedPages: new Map(),
+    watchedPages: [],
     exactHistoryItem:{},
     pageNumber: 0,
     size: 10,

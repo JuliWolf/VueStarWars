@@ -1,15 +1,20 @@
 <template>
-    <v-layout row wrap>
-        <v-flex xs12>
-            <v-card dark color="secondary">
-                <v-card-text class="px-0">6</v-card-text>
-            </v-card>
-        </v-flex>
+    <v-layout justify-center align-content-center>
+        <app-main-menu></app-main-menu>
+        <app-main></app-main>
     </v-layout>
 </template>
 
 <script>
+    import mainMenu from '../addPanels/mainMenu';
+    import main from './welcome/main';
 
+export default{
+    components:{
+        'app-main-menu': mainMenu,
+        'app-main': main
+    }
+}
 </script>
 
 <style scoped lang="scss">

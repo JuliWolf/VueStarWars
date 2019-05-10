@@ -13,6 +13,12 @@ const state = {
         'fab fa-google-plus',
         'fab fa-linkedin',
         'fab fa-instagram'
+    ],
+    images: [
+        {src: require('@/assets/star-wars-logo.jpg')},
+        {src: require('@/assets/Yoda.jpeg')},
+        {src: require('@/assets/BlackArt.jpg')},
+        {src: require('@/assets/City.jpg')}
     ]
 };
 
@@ -30,6 +36,9 @@ const getters = {
     },
     sociaLicons: state =>{
         return state.sociaLicons;
+    },
+    images: state => {
+        return state.images;
     }
 };
 
